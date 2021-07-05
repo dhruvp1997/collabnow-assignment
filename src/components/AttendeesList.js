@@ -1,22 +1,16 @@
 import React,{useState} from "react";
 import TasksList from './TasksList';
 import {Button, Row, Col, Container,Card} from "react-bootstrap";
-import attendeesList from "../attendees.json";
-
-function tooglefunc() {
-    
-    return setToggleForm(!toggleForm)}
-
-
+import db from "../db.json";
 
 function AttendeesList () {
-    let [toggleForm, setToggleForm] = useState(false);
+     const [toggleForm, setToggleForm] = useState(false);
     
     return(
         <Container style={{marginTop:50}}>
             {
-                attendeesList.map(attendees=>(
-                    <div style={{width:300}}>
+                db.attendees.map(attendees=>(
+                    <div style={{width:600}}>
                     
                         <Card variant="primary">
                         <Card.Header>
@@ -24,7 +18,7 @@ function AttendeesList () {
                                     <Col>{attendees.name}</Col>
                                     <Col>
                                     {/* onClick={()=> onDeleteAppointment(appointment.id)} */}
-                                        <Button id={attendees.id} onClick={tooglefunc}>
+                                        <Button id={attendees.id} onClick={()=>setToggleForm(!toggleForm)}>
                                         Tasks
                                         </Button>
                                     </Col>
@@ -32,7 +26,8 @@ function AttendeesList () {
                         </Card.Header>
                         { toggleForm && 
                         <Card.Body>
-                            <TasksList />
+                            <TasksList  />
+                            <Button as="div" style={{width:525}}>Add New Task</Button>
                         </Card.Body>
                         }
                         </Card>
