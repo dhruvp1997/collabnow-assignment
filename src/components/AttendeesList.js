@@ -4,7 +4,7 @@ import Button from "react-bootstrap/Button";
 
 function AttendeesList ({attendeesList}) {
      const [toggleAttendeeList, setToggleAttendeeList] = useState(null);
-    //  const [toggleAddTaskForm, setToggleAddTaskForm] = useState(false);
+    
 
         const toggle = (i) => {
             if(toggleAttendeeList === i){

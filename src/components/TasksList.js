@@ -1,11 +1,12 @@
 import React,{useState} from "react";
 import {BiCaretDown,BiCaretRight} from "react-icons/bi"
 import {Button,ProgressBar} from "react-bootstrap";
-
+import AddTask from "./AddTask"
 
 
 function TasksList (taskList) {
     const [toggleTaskList, setToggleTaskList] = useState(null);
+    const [toggleAddTaskForm, setToggleAddTaskForm] = useState(false);
     const toggle = (i) => {
         if(toggleTaskList === i){
             return setToggleTaskList(null)
@@ -15,12 +16,15 @@ function TasksList (taskList) {
     
     return(
                 <>
-                <div className='itemTask' style={{height:78.24,alignItems:'center'}}>
-                        <Button style={{width:420,marginTop:6}}><h5>Add Task</h5></Button>
+                <div className={toggleAddTaskForm? 'itemAddTask':'itemTask'} style={{height:78.24,alignItems:'center'}}>
+                        <Button style={{width:420,marginTop:6}} onClick={()=> setToggleAddTaskForm(!toggleAddTaskForm)}><h5>Add Task</h5></Button>
                 </div>
+                {
+                toggleAddTaskForm &&
+                <AddTask />
+                }
                 {taskList.taskList.map((task,i)=>(
                     <div key={i} className='itemTask'>
-                        
                         <div className='titleTask' >
                             <h5>{task.title}</h5>
                             <Button onClick={()=>toggle(i)}>

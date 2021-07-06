@@ -59,10 +59,25 @@
   margin-bottom: 5px;
   padding: 10px 20px;
 }
+.itemAddTask{
+  border:5px;
+  background: lightblue;
+  padding: 10px 20px;
+}
 
 .priority{
   color:white;
   width:150px;
   padding-top: 2px;
   border-radius: 5px;
+}
+
+.form-label{
+  margin: 4px 4px 0px 0px;
+  display: flex;
+  justify-content: center;
+}
+
+.form-row{
+  margin: 6px 0px 6px 0px;
 }
