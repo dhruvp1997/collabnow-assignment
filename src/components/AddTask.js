@@ -58,7 +58,7 @@ function AddTask() {
                         </Form.Control>
                     </Col>
                 </Form.Row>
-                <Form.Row>
+                <Form.Row style={{marginTop:20}}>
                     <Col>
                         <Button variant="primary" type="submit">
                             Submit

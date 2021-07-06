@@ -15,7 +15,7 @@
                     "tasks": [
                         {
                             "id": "1",
-                            "title": "Designing a component",
+                            "title": "Create website Layout",
                             "startdate": "3th July 2021",
                             "enddate": "7th July 2021",
                             "progress": "80",
@@ -23,7 +23,7 @@
                         },
                         {
                             "id": "2",
-                            "title": "Implementing the Design",
+                            "title": "Implement the design CSS",
                             "startdate": "8th July 2021",
                             "enddate": "12th July 2021",
                             "progress": "50",
@@ -31,7 +31,7 @@
                         },
                         {
                             "id": "3",
-                            "title": "Implementing the call back",
+                            "title": "Implement the fronted routes",
                             "startdate": "13th July 2021",
                             "enddate": "20th July 2021",
                             "progress": "20",
@@ -45,26 +45,26 @@
                     "tasks": [
                         {
                             "id": "1",
-                            "title": "Designing a component",
+                            "title": "Make a backend Server",
                             "startdate": "3th July 2021",
                             "enddate": "7th July 2021",
-                            "progress": "20",
+                            "progress": "90",
                             "priority": "Low"
                         },
                         {
                             "id": "2",
-                            "title": "Implementing the Design",
+                            "title": "Implement SQL queries",
                             "startdate": "8th July 2021",
                             "enddate": "12th July 2021",
-                            "progress": "0",
+                            "progress": "70",
                             "priority": "Medium"
                         },
                         {
                             "id": "3",
-                            "title": "Implementing the call back",
+                            "title": "Implementing the call backs API",
                             "startdate": "13th July 2021",
                             "enddate": "20th July 2021",
-                            "progress": "0",
+                            "progress": "40",
                             "priority": "High"
                         }
                     ]
@@ -75,23 +75,23 @@
                     "tasks": [
                         {
                             "id": "1",
-                            "title": "Designing a component",
+                            "title": "Test the components",
                             "startdate": "3th July 2021",
                             "enddate": "7th July 2021",
-                            "progress": "20",
+                            "progress": "100",
                             "priority": "High"
                         },
                         {
                             "id": "2",
-                            "title": "Implementing the Design",
+                            "title": "Find any bugs",
                             "startdate": "8th July 2021",
                             "enddate": "12th July 2021",
-                            "progress": "0",
+                            "progress": "30",
                             "priority": "Low"
                         },
                         {
                             "id": "3",
-                            "title": "Implementing the call back",
+                            "title": "Build and Publish the website",
                             "startdate": "13th July 2021",
                             "enddate": "20th July 2021",
                             "progress": "0",
