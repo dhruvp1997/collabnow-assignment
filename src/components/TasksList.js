@@ -1,54 +1,61 @@
 import React,{useState} from "react";
-import {BiCaretDown} from "react-icons/bi"
-import {Button, Row, Col, Container,Card} from "react-bootstrap";
- import db from "../db.json";
+import {BiCaretDown,BiCaretRight} from "react-icons/bi"
+import {Button,ProgressBar} from "react-bootstrap";
 
-function TasksList () {
-    const [toggleForm, setToggleForm] = useState(false);
+
+
+function TasksList (taskList) {
+    const [toggleTaskList, setToggleTaskList] = useState(null);
+    const toggle = (i) => {
+        if(toggleTaskList === i){
+            return setToggleTaskList(null)
+        }
+        setToggleTaskList(i);
+    }
+    
     return(
-        <Container>
-            {
-                db.tasks.map(tasks=>(
-                    <div style={{width:525}}>
-                    
-                        <Card variant="primary">
-                        <Card.Header>
-                                <Row>
-                                    <Col>{tasks.title}</Col>
-                                    <Col>
-                                    {/* onClick={()=> onDeleteAppointment(appointment.id)} */}
-                                        <Button id={tasks.id} onClick={()=>setToggleForm(!toggleForm)}>
-                                        <BiCaretDown />
-                                        </Button>
-                                    </Col>
-                                </Row>
-                        </Card.Header>
-                        { toggleForm && 
-                        <Card.Body>
-                            <Row><Col><label>Start Date:</label>
-                            &nbsp;{tasks.startdate}</Col>
-                            <Col>
-                            <label>End Date:</label>&nbsp;{tasks.enddate}</Col></Row>
-                            <Row>
-                            <Col><label>Progress:</label>
-                            <label>&nbsp;{tasks.progress}%</label></Col>
-                            <Col>{ (tasks.priority === "High")
-                            ?<Container as="div" style={{backgroundColor:"darkred",color:"white"}}><h5>{tasks.priority}</h5></Container>
-                            :(tasks.priority !== "Low")
-                            ?<Container as="div" style={{backgroundColor:"darkorange",color:"white"}}><h5>{tasks.priority}</h5></Container>
-                            :<Container as="div" style={{backgroundColor:"darkgreen",color:"white"}}><h5>{tasks.priority}</h5></Container>}
-                            </Col>
-                            </Row>
-                        </Card.Body>
-                        }
-                        </Card>
-                   
+                <>
+                <div className='itemTask' style={{height:78.24,alignItems:'center'}}>
+                        <Button style={{width:420,marginTop:6}}><h5>Add Task</h5></Button>
+                </div>
+                {taskList.taskList.map((task,i)=>(
+                    <div key={i} className='itemTask'>
+                        
+                        <div className='titleTask' >
+                            <h5>{task.title}</h5>
+                            <Button onClick={()=>toggle(i)}>
+                                {toggleTaskList===i?<BiCaretDown/>:<BiCaretRight/>}
+                            </Button>
+                        </div>
+                        <div className={toggleTaskList===i?'content show':'content'} style={{marginTop:10}}>
+                        <div style={{display: "flex",justifyContent: "space-between"}}>
+                            <h6>Start Date:&nbsp;
+                            {task.startdate}</h6>
+                            <h6>End Date:&nbsp;
+                            {task.enddate}</h6>
+                        </div>
+                        <div style={{display: "flex",justifyContent: "space-between"}}>
+                            <ProgressBar style={{width:150,height:30}} now={task.progress} label={`${task.progress}%`} />
+                            { 
+                                (task.priority === "High")
+                                ?<div className='priority' style={{backgroundColor:"#e34444"}}>
+                                    <label>{task.priority}</label>
+                                </div>
+                                :(task.priority !== "Low")
+                                ?<div style={{backgroundColor:"#e38e44",color:"white",width:150}}>
+                                    <label>{task.priority}</label>
+                                </div>
+                                :<div style={{backgroundColor:"#44e369",color:"white",width:150}}>
+                                    <label>{task.priority}</label>
+                                </div>
+                            }
+                        </div>
+                        </div>
                     </div>
-                ))
-            }
-            
-        </Container>
+                ))}
+            </>
 )
 }
 
 export default TasksList
+

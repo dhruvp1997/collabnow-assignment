@@ -18,7 +18,7 @@
                             "title": "Designing a component",
                             "startdate": "3th July 2021",
                             "enddate": "7th July 2021",
-                            "progress": "20",
+                            "progress": "80",
                             "priority": "High"
                         },
                         {
@@ -26,16 +26,16 @@
                             "title": "Implementing the Design",
                             "startdate": "8th July 2021",
                             "enddate": "12th July 2021",
-                            "progress": "0",
-                            "priority": "Low"
+                            "progress": "50",
+                            "priority": "Medium"
                         },
                         {
                             "id": "3",
                             "title": "Implementing the call back",
                             "startdate": "13th July 2021",
                             "enddate": "20th July 2021",
-                            "progress": "0",
-                            "priority": "Medium"
+                            "progress": "20",
+                            "priority": "Low"
                         }
                     ]
                 },
@@ -49,7 +49,7 @@
                             "startdate": "3th July 2021",
                             "enddate": "7th July 2021",
                             "progress": "20",
-                            "priority": "High"
+                            "priority": "Low"
                         },
                         {
                             "id": "2",
@@ -57,7 +57,7 @@
                             "startdate": "8th July 2021",
                             "enddate": "12th July 2021",
                             "progress": "0",
-                            "priority": "Low"
+                            "priority": "Medium"
                         },
                         {
                             "id": "3",
@@ -65,7 +65,7 @@
                             "startdate": "13th July 2021",
                             "enddate": "20th July 2021",
                             "progress": "0",
-                            "priority": "Medium"
+                            "priority": "High"
                         }
                     ]
                 },
@@ -98,32 +98,6 @@
                             "priority": "Medium"
                         }
                     ]
-                }
-            ],
-            "tasks": [
-                {
-                    "id": "1",
-                    "title": "Designing a component",
-                    "startdate": "3th July 2021",
-                    "enddate": "7th July 2021",
-                    "progress": "20",
-                    "priority": "High"
-                },
-                {
-                    "id": "2",
-                    "title": "Implementing the Design",
-                    "startdate": "8th July 2021",
-                    "enddate": "12th July 2021",
-                    "progress": "0",
-                    "priority": "Low"
-                },
-                {
-                    "id": "3",
-                    "title": "Implementing the call back",
-                    "startdate": "13th July 2021",
-                    "enddate": "20th July 2021",
-                    "progress": "0",
-                    "priority": "Medium"
                 }
             ]
 }
