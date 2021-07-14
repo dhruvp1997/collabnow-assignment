@@ -1,11 +1,64 @@
 {   "hosts":[
                 {
                     "id":"1",
-                    "name":"Kishore Daggubati"
+                    "name":"Kishore Daggubati",
+                    "tasks": [
+                        {
+                            "id": "1",
+                            "title": "Create website Layout",
+                            "startDate": "2021-07-03",
+                            "endDate": "2021-07-07",
+                            "progress": "80",
+                            "priority": "High"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Implement the design CSS",
+                            "startDate": "2021-07-08",
+                            "endDate": "2021-07-12",
+                            "progress": "50",
+                            "priority": "Medium"
+                        },
+                        {
+                            "id": "3",
+                            "title": "Implement the fronted routes",
+                            "startDate": "2021-07-13",
+                            "endDate": "2021-07-20",
+                            "progress": "20",
+                            "priority": "Low"
+                        }
+                    ]
                 },
                 {
                     "id":"2",
-                    "name":"Astha Patel"
+                    "name":"Astha Patel",
+                    "tasks": [
+                        {
+                            "id": "1",
+                            "title": "Make a backend Server",
+                            "startDate": "2021-07-03",
+                            "endDate": "2021-07-07",
+                            "progress": "90",
+                            "priority": "Low"
+                        },
+                        {
+                            "id": "2",
+                            "title": "Implement SQL queries",
+                            "startDate": "2021-07-08",
+                            "endDate": "2021-07-12",
+                            "progress": "70",
+                            "priority": "Medium"
+                        },
+                        {
+                            "id": "3",
+                            "title": "Implementing the call backs API",
+                            "startDate": "2021-07-13",
+                            "endDate": "2021-07-20",
+                            "progress": "40",
+                            "priority": "High"
+                        }
+                    ]
+                    
                 }
             ],
     "attendees": [
@@ -16,24 +69,24 @@
                         {
                             "id": "1",
                             "title": "Create website Layout",
-                            "startdate": "3th July 2021",
-                            "enddate": "7th July 2021",
+                            "startDate": "2021-07-03",
+                            "endDate": "2021-07-07",
                             "progress": "80",
                             "priority": "High"
                         },
                         {
                             "id": "2",
                             "title": "Implement the design CSS",
-                            "startdate": "8th July 2021",
-                            "enddate": "12th July 2021",
+                            "startDate": "2021-07-08",
+                            "endDate": "2021-07-12",
                             "progress": "50",
                             "priority": "Medium"
                         },
                         {
                             "id": "3",
                             "title": "Implement the fronted routes",
-                            "startdate": "13th July 2021",
-                            "enddate": "20th July 2021",
+                            "startDate": "2021-07-13",
+                            "endDate": "2021-07-20",
                             "progress": "20",
                             "priority": "Low"
                         }
@@ -46,24 +99,24 @@
                         {
                             "id": "1",
                             "title": "Make a backend Server",
-                            "startdate": "3th July 2021",
-                            "enddate": "7th July 2021",
+                            "startDate": "2021-07-03",
+                            "endDate": "2021-07-07",
                             "progress": "90",
                             "priority": "Low"
                         },
                         {
                             "id": "2",
                             "title": "Implement SQL queries",
-                            "startdate": "8th July 2021",
-                            "enddate": "12th July 2021",
+                            "startDate": "2021-07-08",
+                            "endDate": "2021-07-12",
                             "progress": "70",
                             "priority": "Medium"
                         },
                         {
                             "id": "3",
                             "title": "Implementing the call backs API",
-                            "startdate": "13th July 2021",
-                            "enddate": "20th July 2021",
+                            "startDate": "2021-07-13",
+                            "endDate": "2021-07-20",
                             "progress": "40",
                             "priority": "High"
                         }
@@ -76,24 +129,24 @@
                         {
                             "id": "1",
                             "title": "Test the components",
-                            "startdate": "3th July 2021",
-                            "enddate": "7th July 2021",
+                            "startDate": "2021-07-03",
+                            "endDate": "2021-07-07",
                             "progress": "100",
                             "priority": "High"
                         },
                         {
                             "id": "2",
                             "title": "Find any bugs",
-                            "startdate": "8th July 2021",
-                            "enddate": "12th July 2021",
+                            "startDate": "2021-07-08",
+                            "endDate": "2021-07-12",
                             "progress": "30",
                             "priority": "Low"
                         },
                         {
                             "id": "3",
                             "title": "Build and Publish the website",
-                            "startdate": "13th July 2021",
-                            "enddate": "20th July 2021",
+                            "startDate": "2021-07-13",
+                            "endDate": "2021-07-20",
                             "progress": "0",
                             "priority": "Medium"
                         }
@@ -101,3 +154,5 @@
                 }
             ]
 }
+
+

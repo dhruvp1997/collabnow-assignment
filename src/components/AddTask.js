@@ -1,33 +1,74 @@
-import React from "react";
+import React,{useState} from "react";
 import { Col } from "react-bootstrap";
 import Form from "react-bootstrap/Form"
 import Button from "react-bootstrap/Button"
 
 
+var defaultStartDate = new Date();
+var dd = String (defaultStartDate.getDate()).padStart(2,'0');
+var mm = String (defaultStartDate.getMonth()+1).padStart(2,'0');
+var yyyy = defaultStartDate.getFullYear();
+defaultStartDate = yyyy+"-"+mm+"-"+dd;
+
+var defaultEndDate = new Date();
+defaultEndDate.setDate(defaultEndDate.getDate() + parseInt(5));
+dd = String (defaultEndDate.getDate()).padStart(2,'0');
+mm = String (defaultEndDate.getMonth()+1).padStart(2,'0');
+yyyy = defaultEndDate.getFullYear();
+defaultEndDate = yyyy+"-"+mm+"-"+dd;
 
 
-var StartDate = new Date();
-var dd = String (StartDate.getDate()).padStart(2,'0');
-var mm = String (StartDate.getMonth()+1).padStart(2,'0');
-var yyyy = StartDate.getFullYear();
-StartDate = yyyy+"-"+mm+"-"+dd;
-var EndDate = new Date();
-EndDate.setDate(EndDate.getDate() + parseInt(5));
-dd = String (EndDate.getDate()).padStart(2,'0');
-mm = String (EndDate.getMonth()+1).padStart(2,'0');
-yyyy = EndDate.getFullYear();
-EndDate = yyyy+"-"+mm+"-"+dd;
 function AddTask() {
+    
+    const [addNewTask,setAddNewTask] = useState({
+        title:"",
+        startDate:defaultStartDate,
+        endDate:defaultEndDate,
+        progress:"0",
+        priority:"Low"
+    });
+
+    let name, value;
+
+    const handleInputs = (e) =>{ // To change data in form while saving the value in state
+        //console.log(e);
+        name = e.target.name;
+        value = e.target.value;
+
+        setAddNewTask({...addNewTask,[name]:value})
+    }
+
+    const PostData = async (e)=>{
+        e.preventDefault();
+        const {title,startDate,endDate,progress,priority} = addNewTask;
+        
+        const res = await fetch("/addTask",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                title, startDate, endDate, progress, priority
+            })
+        });
+        const data = await res.json();
+        if(res.status === 422 || !data){
+            window.alert("Invalid one or more added task field");
+        }else{
+            window.alert("Task Added Successfully");
+            //history.push("/")
+        }
+    }
     
     return(
             <>
-            <Form className="itemTask">
+            <Form method="POST" className="itemTask" id="addTaskForm">
                 <Form.Row>
                     <Col xs={3} >
                         <Form.Label >Task title</Form.Label>
                     </Col>
                     <Col>
-                        <Form.Control  type="text" placeholder="Enter a task title" />
+                        <Form.Control  type="text" name="title" id="title" value={addNewTask.title} onChange={handleInputs} placeholder="Enter a task title" />
                     </Col>
                 </Form.Row>
                 <Form.Row>
@@ -35,7 +76,7 @@ function AddTask() {
                         <Form.Label>Start date</Form.Label>
                     </Col>
                     <Col>
-                    <Form.Control type="date" defaultValue={StartDate} />
+                    <Form.Control type="date" name="startDate" id="startDate" value={addNewTask.startDate} onChange={handleInputs} />
                     </Col>
                 </Form.Row>
                 <Form.Row>
@@ -43,7 +84,16 @@ function AddTask() {
                         <Form.Label>End date</Form.Label>
                     </Col> 
                     <Col>    
-                        <Form.Control type="date" defaultValue={EndDate} />
+                        <Form.Control type="date" name="endDate" id="endDate" value={addNewTask.endDate}  onChange={handleInputs} />
+                    </Col>
+                </Form.Row>
+                <Form.Row>
+                    <Col xs={3} >
+                        <Form.Label >Progress</Form.Label>
+                    </Col>
+                    <Col>
+                        <Form.Control  type="number" name="progress" id="progress" min="0" max="100" 
+                        value={addNewTask.progress} onChange={handleInputs} placeholder="Enter the progress" />
                     </Col>
                 </Form.Row>
                 <Form.Row>
@@ -51,22 +101,23 @@ function AddTask() {
                         <Form.Label>Priority</Form.Label>
                     </Col>
                     <Col>
-                        <Form.Control as="select" className="mr-sm-2" id="inlineFormCustomSelect" custom >
+                        <Form.Control as="select" name="priority" value={addNewTask.priority} onChange={handleInputs}  id="priority" className="mr-sm-2" custom >
                             <option value="Low">Low</option>
-                            <option value="High">High</option>
                             <option value="Medium">Medium</option>
+                            <option value="High">High</option>
                         </Form.Control>
                     </Col>
                 </Form.Row>
                 <Form.Row style={{marginTop:20}}>
                     <Col>
-                        <Button variant="primary" type="submit">
+                        <Button variant="primary" type="submit" onClick={PostData}
+                        >
                             Submit
                         </Button>
                     </Col>
                     <Col>
                         <Button variant="danger" type="reset">
-                            Cancel
+                            Reset
                         </Button>
                     </Col>
                 </Form.Row>
@@ -76,3 +127,7 @@ function AddTask() {
 }
 
 export default AddTask
+
+
+//import { NavLink,useHistory } from "react-router-dom";
+//const history = useHistory();
