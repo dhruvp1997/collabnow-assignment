@@ -4,11 +4,12 @@ import AddTask from "./AddTask";
 import {useLocation} from 'react-router-dom';
 import EditTask from "./EditTask";
 
-// var defaultDate = new Date();
-// var dd = String (defaultDate.getDate()).padStart(2,'0');
-// var mm = String (defaultDate.getMonth()+1).padStart(2,'0');
-// var yyyy = defaultDate.getFullYear();
-// defaultDate = yyyy+"-"+mm+"-"+dd;
+var defaultDate = new Date();
+var dd = String (defaultDate.getDate()).padStart(2,'0');
+var mm = String (defaultDate.getMonth()+1).padStart(2,'0');
+var yyyy = defaultDate.getFullYear();
+defaultDate = yyyy+"-"+mm+"-"+dd;
+var finalProgress;
 
 function TasksList ({selfInfo,flag}) {
     let location = useLocation();
@@ -22,14 +23,19 @@ function TasksList ({selfInfo,flag}) {
         
     }
 
-    // const updateProgress = (startDate,endDate)=>{
-    //     if(startDate === defaultDate){
-
-    //     }
-    //     else{
-
-    //     }
-    // }
+    const updateProgress = (startDate,endDate)=>{
+        if(startDate === defaultDate){
+            // console.log("same date");
+        }
+        else{
+            var defaultDate1 = new Date(defaultDate);
+            let startDate1 = new Date(startDate);
+            let endDate1 = new Date(endDate);              
+            finalProgress = ( 100 / (endDate1.getDate() - startDate1.getDate()) )*(defaultDate1.getDate() - startDate1.getDate());
+            // console.log(finalProgress);
+            // console.log("different date");
+        }
+    }
     const taskList = selfInfo.tasks;
     const attendeeId = selfInfo.id;
     return(
@@ -54,7 +60,7 @@ function TasksList ({selfInfo,flag}) {
                         </div>
                         </div>
                         </div>
-                        {/* {updateProgress(task.startDate,task.endDate)} */}
+                        {updateProgress(task.startDate,task.endDate)}
                         <div className={toggleEditTaskForm===i?'content show':'content'} style={{marginTop:10}}>
                         <EditTask taskData={task} selfInfoId={attendeeId} flag={flag}/>
                         </div>
@@ -71,7 +77,7 @@ function TasksList ({selfInfo,flag}) {
                             {task.endDate}</h6>
                         </div>
                         <div style={{display: "flex",justifyContent: "space-between"}}>
-                            <ProgressBar style={{width:150,height:30}} now={task.progress} label={`${task.progress}%`} />
+                            <ProgressBar style={{width:150,height:30}} now={finalProgress} label={`${finalProgress}%`} />
                             { 
                                 (task.priority === "High")
                                 ?<div className='priority' style={{backgroundColor:"#e34444"}}>
@@ -94,4 +100,11 @@ function TasksList ({selfInfo,flag}) {
 }
 
 export default TasksList
+
+/*
+If update date == today date:
+	pass
+else:
+	progress = ( 100 / (end date - start date) ) * (today date - start date)
+*/
 
