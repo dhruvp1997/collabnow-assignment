@@ -64,6 +64,13 @@
   background: lightblue;
   padding: 10px 20px;
 }
+.editTask{
+  border:5px;
+  background:lightgoldenrodyellow;
+  margin-top: 10px;
+  margin-bottom: 5px;
+  padding: 10px 20px;
+}
 
 .priority{
   color:white;

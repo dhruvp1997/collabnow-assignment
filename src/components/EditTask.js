@@ -1,35 +1,22 @@
 import React,{useState} from "react";
 import { Col } from "react-bootstrap";
-import Form from "react-bootstrap/Form"
-import Button from "react-bootstrap/Button"
+import Form from "react-bootstrap/Form";
+import {useLocation} from 'react-router-dom';
+import Button from "react-bootstrap/Button";
 
 
-var defaultStartDate = new Date();
-var dd = String (defaultStartDate.getDate()).padStart(2,'0');
-var mm = String (defaultStartDate.getMonth()+1).padStart(2,'0');
-var yyyy = defaultStartDate.getFullYear();
-defaultStartDate = yyyy+"-"+mm+"-"+dd;
-
-var defaultEndDate = new Date();
-defaultEndDate.setDate(defaultEndDate.getDate() + parseInt(5));
-dd = String (defaultEndDate.getDate()).padStart(2,'0');
-mm = String (defaultEndDate.getMonth()+1).padStart(2,'0');
-yyyy = defaultEndDate.getFullYear();
-defaultEndDate = yyyy+"-"+mm+"-"+dd;
-
-
-function AddTask({selfInfoId}) {
+function EditTask({taskData,selfInfoId,flag}) {
     
-    // console.log(selfInfoId);
-    const [addNewTask,setAddNewTask] = useState({
-        title:"",
-        createDate:defaultStartDate,
-        startDate:defaultStartDate,
-        endDate:defaultEndDate,
-        progress:"0",
-        priority:"Low"
+    let location = useLocation();
+    const [editTask,setEditTask] = useState({
+        _id:taskData._id,
+        title:taskData.title,
+        createDate:taskData.createDate,
+        startDate:taskData.startDate,
+        endDate:taskData.endDate,
+        progress:taskData.progress,
+        priority:taskData.priority
     });
-
     let name, value;
 
     const handleInputs = (e) =>{ // To change data in form while saving the value in state
@@ -37,57 +24,57 @@ function AddTask({selfInfoId}) {
         name = e.target.name;
         value = e.target.value;
 
-        setAddNewTask({...addNewTask,[name]:value})
+        setEditTask({...editTask,[name]:value})
     }
 
-    const PostData = async (e)=>{
+    const PostEditData = async (e)=>{
         e.preventDefault();
-        const {title,createDate,startDate,endDate,progress,priority} = addNewTask;
-        
-        const res = await fetch("/addTask",{
+        const {_id, title, createDate, startDate, endDate, progress, priority} = editTask;
+        //console.log(_id);
+        const res = await fetch("/editTask",{
             method:"POST",
             headers:{
                 "Content-Type":"application/json"
             },
             body:JSON.stringify({
-                selfInfoId, title, createDate, startDate, endDate, progress, priority
+                selfInfoId, _id, title, createDate, startDate, endDate, progress, priority
             })
         });
         const data = await res.json();
         if(res.status === 422 || !data){
             window.alert("Invalid one or more added task field");
         }else{
-            window.alert("Task Added Successfully");
+            window.alert("Task Updated Successfully");
             window.location.reload(false);
             //history.push("/")
         }
     }
-    
-    return(
-            <>
-            <Form method="POST" className="itemTask" id="addTaskForm">
-                <Form.Row>
+
+    return (
+        <>
+            <Form method="POST" className="editTask" id="editTaskForm">
+                {/* <Form.Row>
                     <Col xs={3} >
                         <Form.Label >Task title</Form.Label>
                     </Col>
                     <Col>
-                        <Form.Control  type="text" name="title" id="title" value={addNewTask.title} onChange={handleInputs} placeholder="Enter a task title" />
+                        <Form.Control  type="text" name="title" id="title" value={editTask.title} onChange={handleInputs} placeholder="Enter an updated task title" />
                     </Col>
-                </Form.Row>
-                <Form.Row>
+                </Form.Row> */}                
+                {/* <Form.Row>
                     <Col xs={3} >
                         <Form.Label>Create date</Form.Label>
                     </Col>
                     <Col>
-                    <Form.Control type="date" name="createDate" id="createDate" value={addNewTask.createDate} onChange={handleInputs} />
+                    <Form.Control type="date" name="createDate" id="createDate" value={editTask.createDate} onChange={handleInputs} />
                     </Col>
-                </Form.Row>
+                </Form.Row> */}
                 <Form.Row>
                     <Col xs={3} >
                         <Form.Label>Start date</Form.Label>
                     </Col>
                     <Col>
-                    <Form.Control type="date" name="startDate" id="startDate" value={addNewTask.startDate} onChange={handleInputs} />
+                    <Form.Control type="date" name="startDate" id="startDate" value={editTask.startDate} onChange={handleInputs} />
                     </Col>
                 </Form.Row>
                 <Form.Row>
@@ -95,33 +82,35 @@ function AddTask({selfInfoId}) {
                         <Form.Label>End date</Form.Label>
                     </Col> 
                     <Col>    
-                        <Form.Control type="date" name="endDate" id="endDate" value={addNewTask.endDate}  onChange={handleInputs} />
+                        <Form.Control type="date" name="endDate" id="endDate" value={editTask.endDate}  onChange={handleInputs} />
                     </Col>
                 </Form.Row>
-                <Form.Row>
+                {/* <Form.Row>
                     <Col xs={3} >
                         <Form.Label >Progress</Form.Label>
                     </Col>
                     <Col>
                         <Form.Control  type="number" name="progress" id="progress" min="0" max="100" 
-                        value={addNewTask.progress} onChange={handleInputs} placeholder="Enter the progress" />
+                        value={editTask.progress} onChange={handleInputs} placeholder="Enter the progress" />
                     </Col>
-                </Form.Row>
-                <Form.Row>
+                </Form.Row> */}
+                
+                <Form.Row className={location.pathname ===`/${flag}/${selfInfoId}`?'content show':location.pathname.search(`/host/h`) >= 0 ?'content show':'content'}>
                     <Col xs={3} >
                         <Form.Label>Priority</Form.Label>
                     </Col>
                     <Col>
-                        <Form.Control as="select" name="priority" value={addNewTask.priority} onChange={handleInputs}  id="priority" className="mr-sm-2" custom >
+                        <Form.Control as="select" name="priority" value={editTask.priority} onChange={handleInputs}  id="priority" className="mr-sm-2" custom >
                             <option value="Low">Low</option>
                             <option value="Medium">Medium</option>
                             <option value="High">High</option>
                         </Form.Control>
                     </Col>
                 </Form.Row>
+                
                 <Form.Row style={{marginTop:20}}>
                     <Col>
-                        <Button variant="primary" type="submit" onClick={PostData}
+                        <Button variant="primary" type="submit" onClick={PostEditData}
                         >
                             Submit
                         </Button>
@@ -137,8 +126,4 @@ function AddTask({selfInfoId}) {
     )
 }
 
-export default AddTask
-
-
-//import { NavLink,useHistory } from "react-router-dom";
-//const history = useHistory();
+export default EditTask
