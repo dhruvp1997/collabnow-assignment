@@ -25,7 +25,7 @@ function HostsList ({hostsList}){
                                 Tasks</Button>
                         </div>
                         <div className={toggleHostList===i?'content show':'content'} style={{marginTop:10}}>
-                            <TasksList selfInfo={hosts} flag="host"/>
+                            <TasksList selfInfo={hosts} flag="hosts"/>
                         </div>
                     </div>
                 ))}

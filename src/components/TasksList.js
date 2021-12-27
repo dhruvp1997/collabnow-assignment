@@ -25,13 +25,14 @@ function TasksList ({selfInfo,flag}) {
 
     const updateProgress = (startDate,endDate)=>{
         if(startDate === defaultDate){
+            finalProgress=0;
             // console.log("same date");
         }
         else{
             var defaultDate1 = new Date(defaultDate);
             let startDate1 = new Date(startDate);
             let endDate1 = new Date(endDate);              
-            finalProgress = ( 100 / (endDate1.getDate() - startDate1.getDate()) )*(defaultDate1.getDate() - startDate1.getDate());
+            finalProgress = Math.round( 100 / (endDate1.getDate() - startDate1.getDate()) )*(defaultDate1.getDate() - startDate1.getDate());
             // console.log(finalProgress);
             // console.log("different date");
         }
@@ -40,7 +41,7 @@ function TasksList ({selfInfo,flag}) {
     const attendeeId = selfInfo.id;
     return(
                 <>
-                <div className={location.pathname ===`/${flag}/${attendeeId}`?'content show':location.pathname.search(`/host/h`) >= 0 ?'content show':'content'}
+                <div className={location.pathname ===`/${flag}/${attendeeId}`?'content show':location.pathname.search(`/hosts/h`) >= 0 ?'content show':'content'}
                  style={{marginTop:10}}>
                 <div className={toggleAddTaskForm? 'itemAddTask':'itemTask'} style={{height:78.24,alignItems:'center'}}>
                         <Button style={{width:420,marginTop:6}} onClick={()=> setToggleAddTaskForm(!toggleAddTaskForm)}><h5>Add Task</h5></Button>
@@ -55,7 +56,7 @@ function TasksList ({selfInfo,flag}) {
                         <div className='titleTask' >
                             <h5>{task.title}</h5>
                             <div style={{alignItems:'center'}}>
-                            <div className={location.pathname ===`/${flag}/${attendeeId}`?'content show':location.pathname.search(`/host/h`) >= 0 ?'content show':'content'}>
+                            <div className={location.pathname ===`/${flag}/${attendeeId}`?'content show':location.pathname.search(`/hosts/h`) >= 0 ?'content show':'content'}>
                         <Button style={{marginTop:6}} onClick={()=> toggle(i)}>Edit Task</Button>
                         </div>
                         </div>

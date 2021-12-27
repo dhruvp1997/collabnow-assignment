@@ -95,7 +95,7 @@ function EditTask({taskData,selfInfoId,flag}) {
                     </Col>
                 </Form.Row> */}
                 
-                <Form.Row className={location.pathname ===`/${flag}/${selfInfoId}`?'content show':location.pathname.search(`/host/h`) >= 0 ?'content show':'content'}>
+                <Form.Row className={location.pathname ===`/${flag}/${selfInfoId}`?'content show':location.pathname.search(`/hosts/h`) >= 0 ?'content show':'content'}>
                     <Col xs={3} >
                         <Form.Label>Priority</Form.Label>
                     </Col>
